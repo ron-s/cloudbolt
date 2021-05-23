@@ -50,10 +50,10 @@ class CloudboltTests():
     bug_id = bug[1234]
     # lookup bug 1234 and verify it contains the same info as the orignal collection
     self.BugTrackerService.view_bug(bug_id)
-    assert bug['title'] is not None 
-    assert bug['title'] == 'The service is broken'
-    assert bug['description'] is not None
-    assert bug['description'] == 'I tried this thing and it broke'
-    assert bug['status'] is not None
-    assert bug['status'] == 'OPEN'
+    assert self.bug['title'] is not None 
+    assert self.bug['title'] == 'The service is broken'
+    assert self.bug['description'] is not None
+    assert self.bug['description'] == 'I tried this thing and it broke'
+    assert self.bug['status'] is not None
+    assert self.bug['status'] == 'OPEN'
 
