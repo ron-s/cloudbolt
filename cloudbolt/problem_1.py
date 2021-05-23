@@ -32,8 +32,10 @@ class CloudboltTests():
 
     title = bug['title']
     description = bug ['description']
+    # verify title isn't missing
     if self.bug['title'] == None:
         print("Missing title")
+    # verify description isn't missing
     elif self.bug['description'] == None:
         print("Missing description")
     else:
@@ -42,10 +44,16 @@ class CloudboltTests():
 
     def test_view_bug(self):
     """
-    view bug dictionary
+    view bug info as dictionary
     """
 
     bug_id = bug[1234]
+    # lookup bug 1234 and verify it contains the same info as the orignal collection
     self.BugTrackerService.view_bug(bug_id)
-    assert  self.BugTrackerService.view_bug
+    assert bug['title'] is not None 
+    assert bug['title'] == 'The service is broken'
+    assert bug['description'] is not None
+    assert bug['description'] == 'I tried this thing and it broke'
+    assert bug['status'] is not None
+    assert bug['status'] == 'OPEN'
 
