@@ -1,14 +1,6 @@
 import pytest
 
 
-bug = {
-  "bug_id": 1234 ,
-  "title": "The service is broken",
-  "description": "I tried this thing and it broke",
-  "status": "OPEN",
-}
-
-
 class BugTrackerService():
     def add_bug (title: str, description: str) -> int:
         """ returns the bug_id """
@@ -24,16 +16,36 @@ class BugTrackerService():
         """ removes the bug from the system """
 
 
-def test_add_bug(title, description)
+class CloudboltTests():
+
+    bug = {
+    "bug_id": 1234 ,
+    "title": "The service is broken",
+    "description": "I tried this thing and it broke",
+    "status": "OPEN",
+    }
+
+    def test_add_bug(self)
     """
-    Add a bug
+    Add a bug, verify the title and desc aren't empty and verify the bug ID is unique
     """
-    if bug['title'] == None:
+
+    title = bug['title']
+    description = bug ['description']
+    if self.bug['title'] == None:
         print("Missing title")
-    elif bug['description'] == None:
+    elif self.bug['description'] == None:
         print("Missing description")
     else:
-        assert BugTrackerService.add_bug(title, description) != bug[1234]
+        assert self.BugTrackerService.add_bug(title, description) != bug[1234]
 
 
+    def test_view_bug(self):
+    """
+    view bug dictionary
+    """
+
+    bug_id = bug[1234]
+    self.BugTrackerService.view_bug(bug_id)
+    assert  self.BugTrackerService.view_bug
 
