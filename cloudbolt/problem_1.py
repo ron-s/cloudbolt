@@ -24,9 +24,12 @@ class CloudboltTests():
     Add a bug and verify the bug ID returned is unique
     """
 
-    bug['title'] = 'API 404 error'
+    bug = {
+    "title": "API 404 error",
+    "description": "webpage error",
+    }
+    
     title = bug['title']
-    bug['description'] = 'webpage error'
     description = bug['description']
     assert self.BugTrackerService.add_bug(title, description) != bug[1234]
 
