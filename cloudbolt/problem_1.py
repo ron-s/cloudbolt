@@ -21,21 +21,14 @@ class CloudboltTests():
 
     def test_add_bug(self):
     """
-    Add a bug, verify the title and desc aren't empty and verify the bug ID returned is unique
+    Add a bug and verify the bug ID returned is unique
     """
 
     bug['title'] = 'API 404 error'
     title = bug['title']
     bug['description'] = 'webpage error'
     description = bug['description']
-    # verify title isn't missing
-    if self.bug['title'] == None:
-        print("Missing title")
-    # verify description isn't missing
-    elif self.bug['description'] == None:
-        print("Missing description")
-    else:
-        assert self.BugTrackerService.add_bug(title, description) != bug[1234]
+    assert self.BugTrackerService.add_bug(title, description) != bug[1234]
 
 
     def test_view_bug(self):
