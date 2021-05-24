@@ -25,7 +25,7 @@ class CloudboltTests():
     "status": "OPEN",
     }
 
-    def test_add_bug(self)
+    def test_add_bug(self):
     """
     Add a bug, verify the title and desc aren't empty and verify the bug ID is unique
     """
@@ -44,16 +44,14 @@ class CloudboltTests():
 
     def test_view_bug(self):
     """
-    view bug info as dictionary
+    View bug info is returned as dictionary
     """
 
     bug_id = bug[1234]
     # lookup bug 1234 and verify it contains the same info as the orignal collection
-    self.BugTrackerService.view_bug(bug_id)
-    assert self.bug['title'] is not None 
-    assert self.bug['title'] == 'The service is broken'
-    assert self.bug['description'] is not None
-    assert self.bug['description'] == 'I tried this thing and it broke'
-    assert self.bug['status'] is not None
-    assert self.bug['status'] == 'OPEN'
+    result = self.BugTrackerService.view_bug(bug_id)
+    assert self.result == self.bug
+
+
+
 
