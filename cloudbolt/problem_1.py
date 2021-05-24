@@ -50,6 +50,7 @@ class CloudboltTests():
     bug_id = bug[1234]
     # lookup bug 1234 and verify it contains the same info as the orignal collection
     result = self.BugTrackerService.view_bug(bug_id)
+    expected = self.bug
     assert self.result == self.bug
 
 
