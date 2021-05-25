@@ -207,5 +207,16 @@ def test_find_bug_by_name_using_int():
 
 def test_edit_bug_description():
     """
-    verify if you can edit a bug description that it retains its state
+    verify if you can edit a bug description and that it updates the description entirely and does not append added desc.
     """
+
+    expected = {
+    "bug_id": 2345 ,
+    "title": "The service is hanging",
+    "description": "service hangs after casting a string using AWS",
+    "status": "OPEN",
+    }
+
+    BugTrackerService.edit_bug_description(2345, 'service hangs after casting a string using AWS')
+    result = view_bug(2345)
+    assert expected == result
