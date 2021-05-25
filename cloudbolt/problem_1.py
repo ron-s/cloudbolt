@@ -41,7 +41,8 @@ def test_add_bug():
     }
     title = bug['title']
     description = bug['description']
-    BugTrackerService.add_bug(title, description)
+    result = BugTrackerService.add_bug(title, description)
+    assert result[bug_id] != 1234
     
 
 def test_add_empty_bug():
@@ -49,17 +50,61 @@ def test_add_empty_bug():
     verify submitting an empty title and description returns error or empty dictionary
     """
 
-    expected = {
+    bug = {
     "title": "",
     "description": "",
     }
     title = bug['title']
     description = bug['description']
     result = BugTrackerService.add_bug(title, description)
-    assert expected == result
     if len(result) == 0:
-        print(Dictionary is empty)
-        raise error
+        print(No bug_id returned)
+        assert error
+
+def test_add_bug_empty_title():
+    """
+    verify submitting an empty title returns error or empty dictionary
+    """
+    bug = {
+    "title": "",
+    "description": "400 bad request",
+    }
+    title = bug['title']
+    description = bug['description']
+    result = BugTrackerService.add_bug(title, description)
+    if len(result) == 0:
+        print(No bug_id returned)
+        assert error
+
+def test_add_bug_empty_description():
+    """
+    verify submitting an empty title returns error or empty dictionary
+    """
+    bug = {
+    "title": "401 unauthorized",
+    "description": "",
+    }
+    title = bug['title']
+    description = bug['description']
+    result = BugTrackerService.add_bug(title, description)
+    if len(result) == 0:
+        print(No bug_id returned)
+        assert error
+
+def test_add_bug_using_integers():
+    """
+    verify submitting an integer as title and dictionary returns an error
+    """
+    bug = {
+    "title": 2345,
+    "description": 987687543677,
+    }
+    title = bug['title']
+    description = bug['description']
+    result = BugTrackerService.add_bug(title, description)
+    if len(result) == 0:
+        print(No bug_id returned)
+        assert error
 
 
 
