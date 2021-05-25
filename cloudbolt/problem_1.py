@@ -218,5 +218,44 @@ def test_edit_bug_description():
     }
 
     BugTrackerService.edit_bug_description(2345, 'service hangs after casting a string using AWS')
-    result = view_bug(2345)
+    result = BugTrackerService.view_bug(2345)
     assert expected == result
+
+
+
+def test_edit_bug_status():
+    """
+    verify if you can edit the bug's status from OPEN to CLOSED.
+    """
+
+    expected = {
+    "bug_id": 1234 ,
+    "title": "The service is broken",
+    "description": "I tried this thing and it broke",
+    "status": "CLOSED",
+    }
+    BugTrackerService.edit_bug_status(1234, 'CLOSED')
+    result == BugTrackerService.view_bug(1234)
+    assert expected == result
+
+
+
+def test_delete_bug():
+    """
+    Verify you can delete a bug by bug_id, but make sure the bug exists first
+    """
+
+    # add new bug and verify it exists 
+    add_new_bug = {
+    "title": "React page won't load",
+    "description": "Using this URL webpage won't load"
+    }
+    title = add_new_bug['title']
+    description = add_new_bug = ['description']
+    new_bug = BugTrackerService.add_bug(title, description)
+    bug_id = new_bug['bug_id']
+
+    # delete the new bug
+    expected = {}
+    result = BugTrackerService.delete_bug(bug_id)
+    assert BugTrackerService.view_bug(bug_id) == expected
