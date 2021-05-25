@@ -45,7 +45,10 @@ def test_add_bug():
     
 
 def test_add_empty_bug():
-    """verify submitting an empty title and description returns error or empty dictionary"""
+    """
+    verify submitting an empty title and description returns error or empty dictionary
+    """
+
     expected = {
     "title": "",
     "description": "",
@@ -62,6 +65,7 @@ def test_view_bug():
     """
     Lookup bug 1234 and verify the response is the same as the sample collection
     """
+    
     expected = {
     "bug_id": 1234 ,
     "title": "The service is broken",
