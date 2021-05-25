@@ -150,8 +150,60 @@ def test_view_bug_using_string():
 
 def test_find_bug_by_name():
     """
-    Verify performing a lookup by title returns based on its name
+    Verify a lookup by title returns associated bug
     """
+
+    expected = {
+    "bug_id": 2345
+    }
+
+    result = BugTrackerService.find_bug_by_name('the service is hanging')
+    assert result[bug_id] == expected[bug_id]
+
+def test_find_bug_by_name():
+    """
+    Verify a lookup by partial title returns associated bug
+    """
+
+    expected = {
+    "bug_id": 2345 ,
+    "title": "The service is hanging",
+    "description": "service hangs after casting a string",
+    "status": "OPEN",
+    }
+
+    result = BugTrackerService.find_bug_by_name('the service')
+    for bug in result:
+        assert result[title] in expected[title]
+
+
+def test_find_bug_by_partial_name():
+    """
+    Verify a lookup by partial title returns associated bug
+    """
+
+    expected = {
+    "bug_id": 2345 ,
+    "title": "The service is hanging",
+    "description": "service hangs after casting a string",
+    "status": "OPEN",
+    }
+
+    result = BugTrackerService.find_bug_by_name('the service')
+    for bug in result:
+        assert result[title] in expected[title]
+
+
+def test_find_bug_by_name_using_int():
+    """
+    Verify a lookup by title using an integer returns an error
+    """
+
+    result = BugTrackerService.find_bug_by_name(1099)
+    if len(result) == 0:
+        print('No bug id returned')
+        assert error
+
 
 def test_edit_bug_description():
     """
