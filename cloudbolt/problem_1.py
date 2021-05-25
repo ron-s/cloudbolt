@@ -56,16 +56,18 @@ def test_add_empty_bug():
     title = bug['title']
     description = bug['description']
     result = BugTrackerService.add_bug(title, description)
+    assert expected == result
     if len(result) == 0:
         print(Dictionary is empty)
-    assert expected == result
+        raise error
+
 
 
 def test_view_bug():
     """
     Lookup bug 1234 and verify the response is the same as the sample collection
     """
-    
+
     expected = {
     "bug_id": 1234 ,
     "title": "The service is broken",
