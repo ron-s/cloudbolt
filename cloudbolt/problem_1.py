@@ -2,17 +2,17 @@ import pytest
 
 
 class BugTrackerService():
-    def add_bug (title: str, description: str) -> int:
+    def add_bug (title: str, description: str):
         """ returns the bug_id """
-    def view_bug (bug_id: int) -> dict: 
+    def view_bug (bug_id: int): 
         """ returns the bug dictionary """
-    def find_bug_by_name (title: str) -> int:
-        """ returns the bug_id based on the name """
-    def edit_bug_description (bug_id: int, description: str) -> None : 
+    def find_bug_by_name (title: str):
+     """ returns the bug_id based on the name """
+    def edit_bug_description (bug_id: int, description: str): 
         """ updates the bug's description """
-    def edit_bug_status (bug_id: int, status: str) -> None : 
+    def edit_bug_status (bug_id: int, status: str): 
         """ sets the status field on a bug """
-    def delete_bug (bug_id: int) -> None : 
+    def delete_bug (bug_id: int):
         """ removes the bug from the system """
 
 
@@ -30,7 +30,7 @@ def test_add_bug():
     title = bug['title']
     description = bug['description']
     result = BugTrackerService.add_bug(title, description)
-    assert result[bug_id] != 1234
+    assert result['bug_id'] != 1234
     
 
 def test_add_empty_bug():
@@ -49,6 +49,7 @@ def test_add_empty_bug():
         print('No bug_id returned')
         assert error
 
+
 def test_add_bug_empty_title():
     """
     Verify submitting an empty title returns error or empty dictionary
@@ -64,6 +65,7 @@ def test_add_bug_empty_title():
         print('No bug id returned')
         assert error
 
+
 def test_add_bug_empty_description():
     """
     Verify submitting an empty title returns error or empty dictionary
@@ -78,6 +80,7 @@ def test_add_bug_empty_description():
     if len(result) == 0:
         print('No bug id returned')
         assert error
+
 
 def test_add_bug_using_integers():
     """
@@ -126,12 +129,13 @@ def test_view_bug():
     result = BugTrackerService.view_bug(1234)
     assert result != expected
 
+
 def test_view_bug_using_string():
     """
     Lookup bug using a string instead of an integer and verify you receive error
     """
 
-    expected = error
+    expected = {}
     result = BugTrackerService.view_bug('This is a bug id')
     assert result == expected
 
@@ -147,6 +151,7 @@ def test_find_bug_by_name():
 
     result = BugTrackerService.find_bug_by_name('the service is hanging')
     assert result[bug_id] == expected[bug_id]
+
 
 def test_find_bug_by_name():
     """
@@ -210,7 +215,6 @@ def test_edit_bug_description():
     assert expected == result
 
 
-
 def test_edit_bug_status():
     """
     Verify if you can edit the bug's status from OPEN to CLOSED.
@@ -225,7 +229,6 @@ def test_edit_bug_status():
     BugTrackerService.edit_bug_status(1234, 'CLOSED')
     result == BugTrackerService.view_bug(1234)
     assert expected == result
-
 
 
 def test_delete_bug():
@@ -249,3 +252,6 @@ def test_delete_bug():
         print('Bug deleted')
     else:
         assert error
+
+
+
