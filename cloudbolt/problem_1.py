@@ -16,26 +16,49 @@ class BugTrackerService():
         """ removes the bug from the system """
 
 
-class CloudboltTests():
 
 
-    def test_add_bug(self):
+
+# @pytest.fixture
+# def example_bug_data():
+#     return
+#     {
+#         "bug_id": 1234,
+#         "title": "The service is broken",
+#         "description": "I tried this thing and it broke",
+#         "status": "OPEN",
+#     }
+
+
+def test_add_bug():
     """
-    Add a bug and verify the bug ID returned is unique
+    Add a bug using title and description
     """
 
     bug = {
     "title": "API 404 error",
     "description": "webpage error",
     }
-    
     title = bug['title']
     description = bug['description']
-    self.BugTrackerService.add_bug(title, description)
-    assert 'bug_id' != 1234
+    BugTrackerService.add_bug(title, description)
+    
+
+def test_add_empty_bug():
+    """verify submitting an empty title and description returns error or empty dictionary"""
+    expected = {
+    "title": "",
+    "description": "",
+    }
+    title = bug['title']
+    description = bug['description']
+    result = BugTrackerService.add_bug(title, description)
+    if len(result) == 0:
+        print(Dictionary is empty)
+    assert expected == result
 
 
-    def test_view_bug(self):
+def test_view_bug():
     """
     Lookup bug 1234 and verify the response is the same as the sample collection
     """
@@ -46,17 +69,16 @@ class CloudboltTests():
     "status": "OPEN",
     }
 
-    bug_id = bug[1234]
-    result = self.BugTrackerService.view_bug(bug_id)
-    assert self.result == self.expected
+    result = BugTrackerService.view_bug(1234)
+    assert result == expected
 
 
-    def test_find_bug_by_name(self):
-        """
-        Verify performing a lookup by title returns based on its name
-        """
+def test_find_bug_by_name():
+    """
+    Verify performing a lookup by title returns based on its name
+    """
 
-    def test_edit_bug_description(self):
-        """
-        verify if you can edit a bug description that it retains its state
-        """
+def test_edit_bug_description():
+    """
+    verify if you can edit a bug description that it retains its state
+    """
