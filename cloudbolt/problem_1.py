@@ -18,18 +18,6 @@ class BugTrackerService():
 
 
 
-
-# @pytest.fixture
-# def example_bug_data():
-#     return
-#     {
-#         "bug_id": 1234,
-#         "title": "The service is broken",
-#         "description": "I tried this thing and it broke",
-#         "status": "OPEN",
-#     }
-
-
 def test_add_bug():
     """
     Add a bug using title and description
@@ -47,7 +35,7 @@ def test_add_bug():
 
 def test_add_empty_bug():
     """
-    verify submitting an empty title and description returns error or empty dictionary
+    Verify submitting an empty title and description returns error or empty dictionary
     """
 
     bug = {
@@ -58,12 +46,12 @@ def test_add_empty_bug():
     description = bug['description']
     result = BugTrackerService.add_bug(title, description)
     if len(result) == 0:
-        print(No bug_id returned)
+        print('No bug_id returned')
         assert error
 
 def test_add_bug_empty_title():
     """
-    verify submitting an empty title returns error or empty dictionary
+    Verify submitting an empty title returns error or empty dictionary
     """
     bug = {
     "title": "",
@@ -78,7 +66,7 @@ def test_add_bug_empty_title():
 
 def test_add_bug_empty_description():
     """
-    verify submitting an empty title returns error or empty dictionary
+    Verify submitting an empty title returns error or empty dictionary
     """
     bug = {
     "title": "401 unauthorized",
@@ -93,7 +81,7 @@ def test_add_bug_empty_description():
 
 def test_add_bug_using_integers():
     """
-    verify submitting an integer as title and dictionary returns an error
+    Verify submitting an integer as title and dictionary returns an error
     """
     bug = {
     "title": 2345,
@@ -207,7 +195,7 @@ def test_find_bug_by_name_using_int():
 
 def test_edit_bug_description():
     """
-    verify if you can edit a bug description and that it updates the description entirely and does not append added desc.
+    Verify if you can edit a bug description and that it updates the description entirely and does not append added desc.
     """
 
     expected = {
@@ -225,7 +213,7 @@ def test_edit_bug_description():
 
 def test_edit_bug_status():
     """
-    verify if you can edit the bug's status from OPEN to CLOSED.
+    Verify if you can edit the bug's status from OPEN to CLOSED.
     """
 
     expected = {
@@ -256,6 +244,8 @@ def test_delete_bug():
     bug_id = new_bug['bug_id']
 
     # delete the new bug
-    expected = {}
-    result = BugTrackerService.delete_bug(bug_id)
-    assert BugTrackerService.view_bug(bug_id) == expected
+    BugTrackerService.delete_bug(bug_id)
+    if len(BugTrackerService.view_bug(bug_id)) == 0:
+        print('Bug deleted')
+    else:
+        assert error
