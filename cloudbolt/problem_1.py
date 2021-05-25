@@ -107,7 +107,6 @@ def test_add_bug_using_integers():
         assert error
 
 
-
 def test_view_bug():
     """
     Lookup bug 1234 and verify the response is the same as the sample collection
@@ -121,6 +120,31 @@ def test_view_bug():
     }
 
     result = BugTrackerService.view_bug(1234)
+    assert result == expected
+
+
+def test_view_bug():
+    """
+    Lookup bug 1234 and verify the response is not the same as the sample collection
+    """
+
+    expected = {
+    "bug_id": 2345 ,
+    "title": "The service is hanging",
+    "description": "service hangs after casting a string",
+    "status": "OPEN",
+    }
+
+    result = BugTrackerService.view_bug(1234)
+    assert result != expected
+
+def test_view_bug_using_string():
+    """
+    Lookup bug using a string instead of an integer and verify you receive error
+    """
+
+    expected = error
+    result = BugTrackerService.view_bug('This is a bug id')
     assert result == expected
 
 
