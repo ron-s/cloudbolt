@@ -54,6 +54,7 @@ def test_add_bug_empty_title():
     """
     Verify submitting an empty title returns error or empty dictionary
     """
+
     bug = {
     "title": "",
     "description": "400 bad request",
@@ -70,6 +71,7 @@ def test_add_bug_empty_description():
     """
     Verify submitting an empty title returns error or empty dictionary
     """
+
     bug = {
     "title": "401 unauthorized",
     "description": "",
@@ -86,6 +88,7 @@ def test_add_bug_using_integers():
     """
     Verify submitting an integer as title and dictionary returns an error
     """
+    
     bug = {
     "title": 2345,
     "description": 987687543677,
