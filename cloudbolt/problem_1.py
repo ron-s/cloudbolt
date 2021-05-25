@@ -73,7 +73,7 @@ def test_add_bug_empty_title():
     description = bug['description']
     result = BugTrackerService.add_bug(title, description)
     if len(result) == 0:
-        print(No bug_id returned)
+        print('No bug id returned')
         assert error
 
 def test_add_bug_empty_description():
@@ -88,7 +88,7 @@ def test_add_bug_empty_description():
     description = bug['description']
     result = BugTrackerService.add_bug(title, description)
     if len(result) == 0:
-        print(No bug_id returned)
+        print('No bug id returned')
         assert error
 
 def test_add_bug_using_integers():
@@ -103,7 +103,7 @@ def test_add_bug_using_integers():
     description = bug['description']
     result = BugTrackerService.add_bug(title, description)
     if len(result) == 0:
-        print(No bug_id returned)
+        print('No bug id returned')
         assert error
 
 
