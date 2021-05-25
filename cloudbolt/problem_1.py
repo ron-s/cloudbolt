@@ -31,7 +31,8 @@ class CloudboltTests():
     
     title = bug['title']
     description = bug['description']
-    assert self.BugTrackerService.add_bug(title, description) != bug[1234]
+    self.BugTrackerService.add_bug(title, description)
+    assert 'bug_id' != 1234
 
 
     def test_view_bug(self):
