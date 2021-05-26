@@ -17,8 +17,44 @@ def test_create_new_bug():
 
     r = requests.put(url, data)
     # verify 200 request status code
-    assert response.status_code == 200
+    assert r.status_code == 200
+
+
+
+
+def test_edit_bug():
+    """ 
+    Verify that a bug can be edited
+    """
+
+    existing_bug = {
+        "bug_id": 1234 ,
+        "title": "The service is hanging",
+        "description": "service hangs after casting a string",
+        "status": "OPEN",
+    }
+
+    update_bug_data = {
+        "bug_id": 1234 ,
+        "title": "The service starts and stops",
+        "description": "Service keeps restarting and logging everyone off",
+    }
+
+    expected = {
+        "bug_id": 1234 ,
+        "title": "The service starts and stops",
+        "description": "Service keeps restarting and logging everyone off",
+        "status": "OPEN",
+    }
+
+    r = requests.post(url, update_bug_data)
+    # verify 200 request status code
+    assert r.status_code == 200
     
+    # lookup the bug and verify data persist
+    bug_id = update_bug_data['bug_id']
+    assert r.get(url, bug_id) == expected
 
 
+    
 
