@@ -131,9 +131,10 @@ def test_view_bug_valid_schema():
         "description": "service hangs after casting a string",
         "status": "OPEN",
     }
-    bug_id = schema['bug_id']
+    bug_id = schema["bug_id"]
     r = requests.get(url, bug_id)
     # verify 200 request status code
     assert r.status_code == 200
     response_body = r.json()
+    # if response isn't the same as the schema an exception will be raised
     validate(instance=response_body, schema=schema)
