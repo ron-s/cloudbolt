@@ -51,7 +51,7 @@ def test_edit_bug():
     # verify 200 request status code
     assert r.status_code == 200
     
-    # lookup the bug and verify data persist
+    # lookup the bug and verify data persists
     bug_id = update_bug_data['bug_id']
     assert r.get(url, bug_id) == expected
 
