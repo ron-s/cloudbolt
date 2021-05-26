@@ -42,7 +42,7 @@ def test_edit_bug():
 
 def test_edit_bug():
     """ 
-    Verify that an invalid bug id results in a "Not Found" response
+    Verify that editing an invalid bug id results in a "Not Found" response
     """
 
     bug = {
@@ -99,3 +99,20 @@ def test_create_new_bug():
     r = requests.put(url, data)
     # verify 200 request status code
     assert r.status_code == 200
+
+
+def test_view_invalid_bug():
+    """ 
+    Verify that viewing an invalid bug id results in a "Not Found" response
+    """
+
+    bug = {
+        "bug_id": 100000000000000000000
+    }
+    bug_id = bug["bug_id"]
+    r = requests.get(url, bug_id)
+    assert "NOT FOUND" in r.raise_for_status()
+
+
+
+    
