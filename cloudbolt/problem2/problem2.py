@@ -5,21 +5,6 @@ import requests
 url =  https://bugs.info:4000/api/v1/bug
 
 
-def test_create_new_bug():
-    """ 
-    Create a new bug and verify sucessful 200 response
-    """
-
-    data = {
-        "title": "The service is broken",
-        "description": "I tried this thing and it broke",
-    }
-
-    r = requests.put(url, data)
-    # verify 200 request status code
-    assert r.status_code == 200
-
-
 
 def test_edit_bug():
     """ 
@@ -33,7 +18,7 @@ def test_edit_bug():
         "status": "OPEN",
     }
 
-    update_bug_data = {
+    edit_bug_data = {
         "bug_id": 1234 ,
         "title": "The service starts and stops",
         "description": "Service keeps restarting and logging everyone off",
@@ -46,7 +31,7 @@ def test_edit_bug():
         "status": "OPEN",
     }
 
-    r = requests.post(url, update_bug_data)
+    r = requests.post(url, edit_bug_data)
     # verify 200 request status code
     assert r.status_code == 200
     
@@ -73,7 +58,7 @@ def test_invalid_payload():
     Verify that the server handles invalid payloads
     """
 
-    # omit commas from json payload
+    # omit commas to create invalid payload
     update_bug_data = {
         "bug_id": 1234 
         "title": "The service is hanging"
@@ -86,3 +71,31 @@ def test_invalid_payload():
         assert value["message"] == "Invalid JSON payload"
 
 
+def test_create_new_bug():
+    """ 
+    Create a new bug and verify sucessful 200 response
+    """
+
+    data = {
+        "title": "The service is broken",
+        "description": "I tried this thing and it broke",
+    }
+
+    r = requests.put(url, data)
+    # verify 200 request status code
+    assert r.status_code == 200
+
+
+def test_create_new_bug():
+    """ 
+    Create a new bug and verify sucessful 200 response
+    """
+
+    data = {
+        "title": "The service is broken",
+        "description": "I tried this thing and it broke",
+    }
+
+    r = requests.put(url, data)
+    # verify 200 request status code
+    assert r.status_code == 200
