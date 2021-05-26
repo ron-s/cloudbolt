@@ -51,8 +51,9 @@ def test_edit_bug():
     assert r.status_code == 200
     
     # lookup the bug and verify data persists
-    bug_id = update_bug_data['bug_id']
+    bug_id = update_bug_data["bug_id"]
     assert r.get(url, bug_id) == expected
+
 
 def test_edit_bug():
     """ 
@@ -62,9 +63,26 @@ def test_edit_bug():
     bug = {
         "bug_id": -200
     }
-    bug_id = bug['bug_id']
+    bug_id = bug["bug_id"]
     r = requests.post(url, bug_id)
     assert "NOT FOUND" in r.raise_for_status()
 
+
+def test_invalid_payload():
+    """
+    Verify that the server handles invalid payloads
+    """
+
+    # omit commas from json payload
+    update_bug_data = {
+        "bug_id": 1234 
+        "title": "The service is hanging"
+        "description": "service hangs after casting a string"
+        "status": "OPEN"
+    }
+    r = requests.post(url, update_bug_data)
+    data = r.json
+    for value in data:
+        assert value["message"] == "Invalid JSON payload"
 
 
