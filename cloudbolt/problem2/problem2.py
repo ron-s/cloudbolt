@@ -21,10 +21,9 @@ def test_create_new_bug():
 
 
 
-
 def test_edit_bug():
     """ 
-    Verify that a bug can be edited
+    Verify that a bug can be edited and the data persists
     """
 
     existing_bug = {
@@ -55,6 +54,17 @@ def test_edit_bug():
     bug_id = update_bug_data['bug_id']
     assert r.get(url, bug_id) == expected
 
+def test_edit_bug():
+    """ 
+    Verify that an invalid bug id results in a "Not Found" response
+    """
 
-    
+    bug = {
+        "bug_id": -200
+    }
+    bug_id = bug['bug_id']
+    r = requests.post(url, bug_id)
+    assert "NOT FOUND" in r.raise_for_status()
+
+
 
