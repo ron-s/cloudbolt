@@ -4,7 +4,6 @@ base_url='https://bugs.info:4000/api/v1/bug'
 
 class BasePage:
     def __init__(self, driver):
-        self.base_url = base_url
         self.driver = driver
         self.timeout = 60
 
