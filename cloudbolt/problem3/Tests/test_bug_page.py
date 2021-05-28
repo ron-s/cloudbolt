@@ -77,3 +77,22 @@ class TestNewBugPage(Base):
         # verify you don't receive a 200 request status code
         assert response.status_code != 200
         assert "error" in response
+
+    def cancel_submission(self):
+        """
+        Verify you can cancel a submission with the Cancel button.
+        """
+        title = "app is crashing after pressing submit."
+        description = "without filling in any text entries pressing submit crashes the app."
+        driver = self.driver
+        new_bug = NewBugPage(driver)
+        new_bug.fill_form(title, description)
+        response = new_bug.cancel_bug_submission
+        # verify you don't receive a 200 request status code
+        assert response.status_code != 200
+        # I'm making assumptions here because there's no info regarding
+        # the state of the page after you fill out the form and click Cancel. 
+        # I'm assuming it empties out the form 
+        assert "title" Not in response
+        assert "description" Not in response
+        assert "bug id" Not in response
