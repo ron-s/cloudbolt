@@ -1,5 +1,5 @@
-from pages.bug_page import NewBugPage
-from base.base import Base
+from Pages.bug_page import NewBugPage
+from Base.base import Base
 import pytest
 
 class TestNewBugPage(Base):

@@ -1,5 +1,5 @@
 from selenium import webdriver
-from base.base_page import BasePage
+from Base.base_page import BasePage
 import pytest
 
 
