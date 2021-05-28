@@ -36,4 +36,3 @@ class TestNewBugPage(Base):
         # verify you don't receive a 200 request status code
         assert response.status_code != 200
         assert "error" in response
-
