@@ -18,3 +18,11 @@ class NewBugPage(BasePage):
 
     def cancel_bug_submission():
         driver.find_element_by_name('Cancel').click()
+    
+    def fill_title_only(title):
+        driver.find_element_by_name('Title').clear()
+        driver.find_element_by_name('Title').send_keys(title)
+    
+    def fill_description_only(description):
+        driver.find_element_by_name('Description').clear()
+        driver.find_element_by_name('Description').send_keys(description)
