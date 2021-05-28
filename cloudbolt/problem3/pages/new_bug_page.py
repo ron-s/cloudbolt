@@ -1,14 +1,16 @@
 from selenium import webdriver
-from Pages.base_page import BasePage
+from Base.base_page import BasePage
 import pytest
 
 
 class NewBugPage(BasePage):
      
-    driver = webdriver.Chrome()
-    driver.maximize_window()
+    driver = webdriver.Chrome(self)
+
     def fill_form(title, description): 
+        driver.find_element_by_name('Title').clear()
         driver.find_element_by_name('Title').send_keys(title)
+        driver.find_element_by_name('Description').clear()
         driver.find_element_by_name('Description').send_keys(description)
 
     def submit_new_bug(): 
@@ -16,3 +18,5 @@ class NewBugPage(BasePage):
 
     def cancel_bug_submission():
         driver.find_element_by_name('Cancel').click()
+
+    
